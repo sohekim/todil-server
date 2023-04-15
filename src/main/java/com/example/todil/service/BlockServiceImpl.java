@@ -4,8 +4,10 @@ import com.example.todil.domain.converter.BlockConverter;
 import com.example.todil.domain.dto.BlockDto;
 import com.example.todil.domain.entity.Block;
 import com.example.todil.domain.entity.Tag;
+import com.example.todil.domain.entity.User;
 import com.example.todil.repository.BlockRepository;
 import com.example.todil.repository.TagRepository;
+import com.example.todil.repository.UserRepository;
 import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
@@ -21,6 +23,7 @@ public class BlockServiceImpl implements BlockService{
 
     final BlockRepository blockRepository;
     final TagRepository tagRepository;
+    final UserRepository userRepository;
 
     @Override
     public Page<Block> findBlocks(Integer page, Integer size) {
@@ -37,10 +40,36 @@ public class BlockServiceImpl implements BlockService{
         return blockRepository.findById(id);
     }
 
+    // todo: later get user_id from header
+    // implement header class
     @Override
-    public Block save(BlockDto dto) {
-        dto.setUpdateDate(LocalDateTime.now());
-        return blockRepository.save(BlockConverter.toEntity(dto));
+    public Block save(BlockDto dto) throws Exception{
+        // todo: differntiate creating new block and editing new block
+
+        LocalDateTime now = LocalDateTime.now();
+        dto.setUpdateDate(now);
+
+
+
+//        if (now.isAfter(userRepository.))
+
+        // find user's last_created
+        // if current date is more recent, meaning new entry of the date
+        // update last_created in USER
+
+        // call increase streak()
+        // userRepository.increaseStreak();
+
+        Optional<User> user = userRepository.findById(dto.getUser_id());
+        if (user.isEmpty()) throw new Exception();
+
+        Block block = Block.builder()
+                .id(dto.getId())
+                .text(dto.getText())
+                .updateDate(dto.getUpdateDate())
+                .user(user.get()).build();
+
+        return blockRepository.save(block);
     }
 
     @Transactional

@@ -3,6 +3,7 @@ package com.example.todil.domain.entity;
 import com.example.todil.domain.dto.BlockDto;
 import jakarta.persistence.*;
 import lombok.AccessLevel;
+import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
@@ -23,6 +24,10 @@ public class Block {
     private String text;
     private LocalDateTime updateDate;
 
+    @ManyToOne
+    @JoinColumn(name = "user_id", nullable = false)
+    private User user;
+
     // The ON DELETE CASCADE option ensures that if a block or tag is deleted,
     // all related records in the block_tags table will be deleted as well.
     @ManyToMany(cascade = CascadeType.ALL)
@@ -31,14 +36,25 @@ public class Block {
             inverseJoinColumns = @JoinColumn(name = "tag_id"))
     private Set<Tag> tags = new HashSet<>();
 
-    protected Block(BlockDto blockDto) {
-        this.text = blockDto.getText();
-        this.updateDate = blockDto.getUpdateDate();
+//    // todo: do we even use this?
+//    // do we need to convert blockDto to entity?
+//    protected Block(BlockDto blockDto) {
+//        this.text = blockDto.getText();
+//        this.updateDate = blockDto.getUpdateDate();
+////        this.user = blockDto.getUserId();
+//    }
+
+    @Builder
+    public Block(Long id, String text, LocalDateTime updateDate, User user) {
+      this.text = text;
+      this.updateDate = updateDate;
+      this.user = user;
+      this.id = id;
     }
 
-    public static Block toEntity(BlockDto blockDto) {
-        return new Block(blockDto);
-    }
+//    public static Block toEntity(BlockDto blockDto) {
+//        return new Block(blockDto);
+//    }
 
 
 }

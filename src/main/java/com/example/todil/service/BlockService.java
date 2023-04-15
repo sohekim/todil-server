@@ -16,7 +16,7 @@ public interface BlockService {
     Optional<Block> findBlockById(Long id);
 
     // todo: change to dto
-    Block save(BlockDto dto);
+    Block save(BlockDto dto) throws Exception;
 
     @Transactional
     void addTagToBlock(Long blockId, Long tagId);

@@ -2,6 +2,7 @@ package com.example.todil.domain.converter;
 
 import com.example.todil.domain.dto.BlockDto;
 import com.example.todil.domain.entity.Block;
+import com.example.todil.service.UserService;
 
 import java.util.Collection;
 import java.util.List;
@@ -11,7 +12,7 @@ public class BlockConverter extends BaseConverter<BlockDto, Block>{
     private static final BlockConverter converter = new BlockConverter();
 
     public BlockConverter() {
-        super(Block::toEntity, BlockDto::toDto);
+        super(null, BlockDto::toDto);
     }
 
     public static BlockDto toDto(Block Block) {
@@ -19,6 +20,7 @@ public class BlockConverter extends BaseConverter<BlockDto, Block>{
     }
 
     public static Block toEntity(BlockDto BlockDto) {
+
         return converter.convertFromDto(BlockDto);
     }
 

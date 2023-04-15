@@ -19,6 +19,7 @@ public class BlockDto {
     private String text;
     private LocalDateTime updateDate;
     private List<String> tags;
+    private Long user_id;
 
     // todo: fix constructor
     public BlockDto(Block entity
@@ -27,6 +28,7 @@ public class BlockDto {
         this.id = entity.getId();
         this.text = entity.getText();
         this.updateDate = entity.getUpdateDate();
+        this.user_id = entity.getUser().getId();
         this.tags = entity.getTags().stream().map(Tag::getTagName).collect(Collectors.toList());
 //        this.tags = tagList.stream().map(Tag::getTagName).collect(Collectors.toList());
     }
