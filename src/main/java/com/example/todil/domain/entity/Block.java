@@ -22,6 +22,8 @@ public class Block {
     private Long id;
     @Column(length = 200, nullable = false)
     private String text;
+
+    // todo: add create date
     private LocalDateTime updateDate;
 
     @ManyToOne
@@ -36,25 +38,12 @@ public class Block {
             inverseJoinColumns = @JoinColumn(name = "tag_id"))
     private Set<Tag> tags = new HashSet<>();
 
-//    // todo: do we even use this?
-//    // do we need to convert blockDto to entity?
-//    protected Block(BlockDto blockDto) {
-//        this.text = blockDto.getText();
-//        this.updateDate = blockDto.getUpdateDate();
-////        this.user = blockDto.getUserId();
-//    }
-
     @Builder
     public Block(Long id, String text, LocalDateTime updateDate, User user) {
-      this.text = text;
-      this.updateDate = updateDate;
-      this.user = user;
-      this.id = id;
+        this.text = text;
+        this.updateDate = updateDate;
+        this.user = user;
+        this.id = id;
     }
-
-//    public static Block toEntity(BlockDto blockDto) {
-//        return new Block(blockDto);
-//    }
-
 
 }

@@ -8,4 +8,6 @@ public interface UserService {
 
     Optional<User> findUserById(Long id);
 
+    void incrementStreak(Long id);
+
 }

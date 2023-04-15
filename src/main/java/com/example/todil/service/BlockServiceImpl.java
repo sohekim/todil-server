@@ -1,6 +1,5 @@
 package com.example.todil.service;
 
-import com.example.todil.domain.converter.BlockConverter;
 import com.example.todil.domain.dto.BlockDto;
 import com.example.todil.domain.entity.Block;
 import com.example.todil.domain.entity.Tag;
@@ -14,6 +13,7 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.Optional;
 
@@ -24,6 +24,8 @@ public class BlockServiceImpl implements BlockService{
     final BlockRepository blockRepository;
     final TagRepository tagRepository;
     final UserRepository userRepository;
+
+    final UserService userService;
 
     @Override
     public Page<Block> findBlocks(Integer page, Integer size) {
@@ -40,33 +42,38 @@ public class BlockServiceImpl implements BlockService{
         return blockRepository.findById(id);
     }
 
-    // todo: later get user_id from header
-    // implement header class
+    // todo: later get user_id from header - implement header class
+    @Transactional
     @Override
     public Block save(BlockDto dto) throws Exception{
-        // todo: differntiate creating new block and editing new block
 
-        LocalDateTime now = LocalDateTime.now();
-        dto.setUpdateDate(now);
-
-
-
-//        if (now.isAfter(userRepository.))
-
-        // find user's last_created
-        // if current date is more recent, meaning new entry of the date
-        // update last_created in USER
-
-        // call increase streak()
-        // userRepository.increaseStreak();
+        // todo: differentiate creating new block and editing new block
 
         Optional<User> user = userRepository.findById(dto.getUser_id());
         if (user.isEmpty()) throw new Exception();
 
+        LocalDateTime localDateTime = LocalDateTime.now();
+        LocalDate localDate = localDateTime.toLocalDate();
+
+        // STREAK LOGIC
+        // if the new block is after the user's last created date -> meaning new block of the day
+        // increment current streak
+        // update global streak
+        // update user get last created
+
+        // new block of the day
+         if (user.get().getLast_created() == null || localDate.isAfter(user.get().getLast_created().toLocalDate())) {
+             userService.incrementStreak(dto.getUser_id());
+             user.get().setLast_created(localDateTime);
+         }
+
+        // dto.setUpdateDate(localDateTime);
+
         Block block = Block.builder()
                 .id(dto.getId())
                 .text(dto.getText())
-                .updateDate(dto.getUpdateDate())
+                .updateDate(localDateTime)
+                // .updateDate(dto.getUpdateDate())
                 .user(user.get()).build();
 
         return blockRepository.save(block);
