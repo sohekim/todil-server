@@ -7,4 +7,6 @@ public interface BlockRepository extends JpaRepository<Block, Long> {
 
     Integer countByIdGreaterThanEqual(Long id);
 
+    Integer countBlocksByUserId(Long user_id);
+
 }

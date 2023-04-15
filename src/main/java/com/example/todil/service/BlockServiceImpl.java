@@ -38,6 +38,11 @@ public class BlockServiceImpl implements BlockService{
     }
 
     @Override
+    public Integer getBlockCountByUserId(Long user_id) {
+        return blockRepository.countBlocksByUserId(user_id);
+    }
+
+    @Override
     public Optional<Block> findBlockById(Long id) {
         return blockRepository.findById(id);
     }

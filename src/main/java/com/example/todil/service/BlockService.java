@@ -13,6 +13,8 @@ public interface BlockService {
 
     Integer getBlockCount();
 
+    Integer getBlockCountByUserId(Long user_id);
+
     Optional<Block> findBlockById(Long id);
 
     Block save(BlockDto dto) throws Exception;
