@@ -39,7 +39,7 @@ public class BlockController {
     @GetMapping
     public ResponseEntity<List<Block>> findBlocks(
             @RequestParam(required = false, defaultValue = "0") Integer page,
-            @RequestParam(required = false, defaultValue = "10") Integer size
+            @RequestParam(required = false, defaultValue = "100") Integer size
     ) {
         Page<Block> blockPage = blockService.findBlocks(page, size);
         if (blockPage.isEmpty()) return new ResponseEntity("block not found", HttpStatus.NOT_FOUND);
