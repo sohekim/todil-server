@@ -1,6 +1,5 @@
 package com.example.todil.domain.entity;
 
-import com.example.todil.domain.dto.BlockDto;
 import jakarta.persistence.*;
 import lombok.AccessLevel;
 import lombok.Builder;

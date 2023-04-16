@@ -17,7 +17,6 @@ import org.springframework.web.bind.annotation.*;
 import java.net.URI;
 import java.util.List;
 import java.util.Optional;
-import java.util.stream.Collectors;
 
 @RestController
 @RequiredArgsConstructor
@@ -32,8 +31,8 @@ public class BlockController {
     @GetMapping("/{id}")
     public ResponseEntity<Block> findBlockById(@PathVariable(value = "id") Long id) {
         Optional<Block> block = blockService.findBlockById(id);
-        if (block.isEmpty()) return new ResponseEntity("block not found", HttpStatus.NOT_FOUND);
-        return new ResponseEntity<>(block.get(), HttpStatus.OK);
+        return block.map(value -> new ResponseEntity<>(value, HttpStatus.OK))
+                    .orElseGet(() -> new ResponseEntity("block not found", HttpStatus.NOT_FOUND));
     }
 
     @GetMapping
@@ -54,7 +53,6 @@ public class BlockController {
             @RequestBody BlockDto dto) {
 
         try {
-
             Optional<User> user = userService.findUserById(dto.getUser_id());
             if (user.isEmpty()) return new ResponseEntity<>("user not found", HttpStatus.NOT_FOUND);
 
@@ -66,8 +64,7 @@ public class BlockController {
             List<Tag> tags = dto.getTags().stream()
                     .map(tagName -> tagService.findTagByName(tagName)
                             .orElseGet(() -> tagService.save(new Tag(tagName))))
-                    .collect(Collectors.toList());
-
+                    .toList();
 
             // 2. save block
             Block block = blockService.save(dto);
@@ -75,9 +72,9 @@ public class BlockController {
             // 3. Associate tags with block
             tags.forEach(tag -> blockService.addTagToBlock(block.getId(), tag.getId()));
 
-
             HttpHeaders responseHeaders = new HttpHeaders();
             responseHeaders.setLocation(URI.create(request.getRequestURI() + "/" + block.getId()));
+
             return new ResponseEntity<>(responseHeaders, HttpStatus.CREATED);
 
         } catch (Exception e) {

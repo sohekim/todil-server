@@ -20,7 +20,11 @@ public class UserServiceImpl implements  UserService{
 
     @Override
     public void incrementStreak(Long id) {
-        User user = userRepository.findById(id).get();
+        Optional<User> optionalUser = userRepository.findById(id);
+
+        if (optionalUser.isEmpty()) return;
+
+        User user = optionalUser.get();
 
         int newCurrentStreak = user.getCurrent_streak() + 1;
         user.setCurrent_streak(newCurrentStreak);
