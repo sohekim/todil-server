@@ -10,6 +10,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.Optional;
 
 @RestController
@@ -34,12 +35,19 @@ public class HomeController {
         Block recapBlock = blockService.findClosestBlockByDateAndUserId(userId, recap_date);
 
         User user = optionalUser.get();
+
+        // refresh current streak
+        LocalDateTime lastCreatedDateTime = user.getLast_created();
+        if (lastCreatedDateTime.isBefore(LocalDateTime.now())) {
+            user.setCurrent_streak(0);
+        }
+
         HomeDto homeDto = HomeDto.builder()
-                .block(recapBlock)
-                .longest_streak(user.getLongest_streak())
-                .current_streak(user.getCurrent_streak())
-                .total_blocks(blockService.getBlockCountByUserId(userId))
-                .build();
+            .block(recapBlock)
+            .longest_streak(user.getLongest_streak())
+            .current_streak(user.getCurrent_streak())
+            .total_blocks(blockService.getBlockCountByUserId(userId))
+            .build();
 
         return new ResponseEntity<>(homeDto, HttpStatus.OK);
     }
