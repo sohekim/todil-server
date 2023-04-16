@@ -1,6 +1,6 @@
 package com.example.todil.apicontroller;
 
-import com.example.todil.domain.dto.InsightSummaryDTO;
+import com.example.todil.domain.dto.DigestSummaryDto;
 import com.example.todil.domain.entity.User;
 import com.example.todil.service.BlockService;
 import com.example.todil.service.UserService;
@@ -20,7 +20,7 @@ public class DigestController {
     final BlockService blockService;
 
     @GetMapping("/summary")
-    public ResponseEntity<InsightSummaryDTO> findBlocks(
+    public ResponseEntity<DigestSummaryDto> findBlocks(
             @RequestHeader(name = "user_id") Long user_id
     ) {
 
@@ -29,13 +29,13 @@ public class DigestController {
         if (optionalUser.isEmpty()) return new ResponseEntity("user_not_found",HttpStatus.NOT_FOUND);
 
         User user = optionalUser.get();
-        InsightSummaryDTO insightSummaryDTO = InsightSummaryDTO.builder()
+        DigestSummaryDto digestSummaryDto = DigestSummaryDto.builder()
                 .longest_streak(user.getLongest_streak())
                 .current_streak(user.getCurrent_streak())
                 .total_blocks(blockService.getBlockCountByUserId(user_id))
                 .build();
 
-        return new ResponseEntity<>(insightSummaryDTO, HttpStatus.OK);
+        return new ResponseEntity<>(digestSummaryDto, HttpStatus.OK);
     }
 
 }

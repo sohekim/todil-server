@@ -95,4 +95,9 @@ public class BlockServiceImpl implements BlockService{
             tag.get().getBlocks().add(block.get());
         }
     }
+
+    @Override
+    public Block findClosestBlockByDateAndUserId(Long userId, LocalDate date) {
+        return blockRepository.findClosestBlockByDateAndUserId(userId, date);
+    }
 }
