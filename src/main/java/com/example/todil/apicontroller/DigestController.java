@@ -72,7 +72,7 @@ public class DigestController {
         final String chatGPTPrompt = "You have to do two task.\n" +
                 "\n" +
                 "First task:  you are an encouraging and fun teacher. Imagine you are writing a  weekly report card that is about five to six sentence to a student who learned what's in the bracket." +
-                "  ["+sb.toString()+"] " +
+                "  ["+ sb +"] " +
                 "Remember to be casual and supportive about learning and progress.  Don't format it as a email.  Only include the actual text. Don't include the student name. Don't include sentence like Don't forget to ask questions if you need help\n" +
                 "\n" +
                 "Second task: based on what the student learn, recommend the student three relevant and trending frameworks or programming languages that the student have not learn yet. When answering the second task, only include the name and not any explanation or words explaining the output. No intro sentences. Only output the names using commas.\n" +

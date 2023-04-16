@@ -2,8 +2,6 @@ package com.example.todil.domain.dto;
 
 import lombok.*;
 
-import java.util.List;
-
 @Getter
 @Setter
 @NoArgsConstructor
