@@ -1,0 +1,34 @@
+package com.example.todil.domain.dto;
+
+import lombok.*;
+
+import java.util.List;
+
+@Getter
+@Setter
+@NoArgsConstructor
+public class DigestDto {
+
+    private String firstName;
+
+    private int total_blocks;
+
+    private int weekly_increase;
+
+    private String digest_text;
+
+    private List<String> suggested_tags;
+
+    private List<String> user_top_tags;
+
+    @Builder
+    public DigestDto (String firstName, int total_blocks, int weekly_increase, String digest_text, List<String> suggested_tags, List<String> user_top_tags) {
+        this.firstName = firstName;
+        this.total_blocks = total_blocks;
+        this.weekly_increase = weekly_increase;
+        this.digest_text = digest_text;
+        this.suggested_tags = suggested_tags;
+        this.user_top_tags = user_top_tags;
+    }
+
+}

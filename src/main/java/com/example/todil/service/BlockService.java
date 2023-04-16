@@ -6,6 +6,7 @@ import jakarta.transaction.Transactional;
 import org.springframework.data.domain.Page;
 
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.Optional;
 
 public interface BlockService {
@@ -24,4 +25,6 @@ public interface BlockService {
     void addTagToBlock(Long blockId, Long tagId);
 
     Block findClosestBlockByDateAndUserId(Long userId, LocalDate date);
+
+    Integer countBlocksByUserIdGivenStartAndEndTime(Long userId, LocalDateTime startTime, LocalDateTime endTime);
 }

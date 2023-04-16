@@ -100,4 +100,9 @@ public class BlockServiceImpl implements BlockService{
     public Block findClosestBlockByDateAndUserId(Long userId, LocalDate date) {
         return blockRepository.findClosestBlockByDateAndUserId(userId, date);
     }
+
+    @Override
+    public Integer countBlocksByUserIdGivenStartAndEndTime(Long userId, LocalDateTime startTime, LocalDateTime endTime) {
+        return blockRepository.countBlocksByUserIdGivenTimeFrame(userId, startTime, endTime);
+    }
 }
