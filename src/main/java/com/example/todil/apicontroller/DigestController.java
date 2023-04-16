@@ -48,7 +48,7 @@ public class DigestController {
     @GetMapping()
     public ResponseEntity<DigestDto> findDigest(
             @RequestHeader(name = "user_id") Long user_id,
-            @RequestHeader(name = "date") String stringDateTime
+            @RequestHeader(name = "start_date") String stringDateTime
     ) {
 
         Optional<User> optionalUser = userService.findUserById(user_id);
