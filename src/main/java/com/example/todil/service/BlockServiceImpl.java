@@ -15,6 +15,7 @@ import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -104,5 +105,10 @@ public class BlockServiceImpl implements BlockService{
     @Override
     public Integer countBlocksByUserIdGivenStartAndEndTime(Long userId, LocalDateTime startTime, LocalDateTime endTime) {
         return blockRepository.countBlocksByUserIdGivenTimeFrame(userId, startTime, endTime);
+    }
+
+    @Override
+    public List<Block> findAllBlocksByUserIdGivenTimeFrame(Long userId, LocalDateTime startTime, LocalDateTime endTime) {
+        return blockRepository.findAllBlocksByUserIdGivenTimeFrame(userId, startTime, endTime);
     }
 }

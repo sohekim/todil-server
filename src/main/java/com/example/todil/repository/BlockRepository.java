@@ -6,8 +6,12 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.util.List;
 
 public interface BlockRepository extends JpaRepository<Block, Long> {
+
+    @Query("SELECT b FROM Block b WHERE b.user.id = :userId AND b.updateDate >= :startTime AND b.updateDate <= :endTime")
+    List<Block> findAllBlocksByUserIdGivenTimeFrame(@Param("userId") Long userId, @Param("startTime") LocalDateTime startTime, @Param("endTime") LocalDateTime endTime);
 
     Integer countByIdGreaterThanEqual(Long id);
 

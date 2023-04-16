@@ -38,7 +38,7 @@ public class HomeController {
 
         // refresh current streak
         LocalDateTime lastCreatedDateTime = user.getLast_created();
-        if (lastCreatedDateTime.isBefore(LocalDateTime.now())) {
+        if (lastCreatedDateTime.toLocalDate().isBefore(LocalDateTime.now().toLocalDate())) {
             user.setCurrent_streak(0);
         }
 

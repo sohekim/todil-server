@@ -17,12 +17,12 @@ public class DigestDto {
 
     private String digest_text;
 
-    private List<String> suggested_tags;
+    private String suggested_tags;
 
-    private List<String> user_top_tags;
+    private String user_top_tags;
 
     @Builder
-    public DigestDto (String firstName, int total_blocks, int weekly_increase, String digest_text, List<String> suggested_tags, List<String> user_top_tags) {
+    public DigestDto (String firstName, int total_blocks, int weekly_increase, String digest_text, String suggested_tags, String user_top_tags) {
         this.firstName = firstName;
         this.total_blocks = total_blocks;
         this.weekly_increase = weekly_increase;
