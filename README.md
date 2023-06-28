@@ -4,8 +4,8 @@
 
 # Todil: A Personalized Learning Tracker
 
-www.todil.vercel.app
-
+[www.todil.vercel.app
+](https://www.todil.net/)
 Postman API Documentation: https://documenter.getpostman.com/view/13148728/2s93XyThyM
 
 ## Screenshots
