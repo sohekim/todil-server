@@ -4,10 +4,9 @@
 
 # Todil: A Personalized Learning Tracker
 
-[www.todil.vercel.app
-](https://todil.vercel.app/)
-
-Postman API Documentation: https://documenter.getpostman.com/view/13148728/2s93XyThyM
+- [www.todil.vercel.app](https://todil.vercel.app/)
+- [Postman API Documentation](https://documenter.getpostman.com/view/13148728/2s93XyThyM)
+- [HackDartmouth VIII 🏆 TOP 10](https://devpost.com/software/todil)
 
 ## Screenshots
 <img width="400" alt="Screenshot 2023-04-24 at 9 15 40 PM" src="https://user-images.githubusercontent.com/89917595/234151080-f9d57ab4-9102-424a-b68c-53136ba7e058.png"> <img width="400" alt="Screenshot 2023-04-24 at 9 15 43 PM" src="https://user-images.githubusercontent.com/89917595/234151067-0b5aec7d-b621-40bc-9d27-373283238b12.png">
