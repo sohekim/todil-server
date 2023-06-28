@@ -8,6 +8,12 @@ www.todil.vercel.app
 
 Postman API Documentation: https://documenter.getpostman.com/view/13148728/2s93XyThyM
 
+## Screenshots
+<img width="400" alt="Screenshot 2023-04-24 at 9 15 40 PM" src="https://user-images.githubusercontent.com/89917595/234151080-f9d57ab4-9102-424a-b68c-53136ba7e058.png"> <img width="400" alt="Screenshot 2023-04-24 at 9 15 43 PM" src="https://user-images.githubusercontent.com/89917595/234151067-0b5aec7d-b621-40bc-9d27-373283238b12.png">
+
+<img width="400" alt="Screenshot 2023-04-24 at 9 15 48 PM" src="https://user-images.githubusercontent.com/89917595/234151058-17564168-691a-4b10-98cc-1525e9283c2d.png"> <img width="400" alt="Screenshot 2023-04-24 at 9 15 56 PM" src="https://user-images.githubusercontent.com/89917595/234151047-144ac96b-c512-48ef-ae2e-ed95787b1d82.png">
+
+
 ## Overview
 Todil is a personalized learning tracker designed to empower individuals to take control of their own learning and development. The tool simplifies the process of documenting and organizing daily learnings and provides useful reminders to prioritize personal growth and skill-building. By integrating the Open AI API, Todil offers unique insights and recommendations tailored to each user's preferences and behaviors, leading to a more engaging and meaningful user experience.
 
@@ -17,6 +23,9 @@ Todil is a personalized learning tracker designed to empower individuals to take
 - <b> Personalized Experience </b>: With the integration of the Open AI API, Todil generates insights and recommendations tailored to each user's unique preferences and behaviors.
 
 ## Built With
+
+<img width="1036" alt="Screenshot 2023-04-24 at 9 28 58 PM" src="https://user-images.githubusercontent.com/89917595/234152518-baab1732-109a-472d-ab5f-a8526d988430.png">
+
 The Todil platform aims to mirror a real-world industry-level framework:
 
 - <b> Frontend</b>: Developed using React.
